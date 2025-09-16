@@ -287,7 +287,6 @@ FASTEST_RPC=\$(cat "$fastest_rpc_file")
 exec "$worm_miner_bin" mine \\
   --network sepolia \\
   --private-key "\$PRIVATE_KEY" \\
-  --custom-rpc "\$FASTEST_RPC" \\
   --amount-per-epoch "0.0001" \\
   --num-epochs "3" \\
   --claim-interval "10"
@@ -499,7 +498,6 @@ EOL
         if "$worm_miner_bin" burn \
           --network sepolia \
           --private-key "$private_key" \
-          --custom-rpc "$fastest_rpc" \
           --amount "$amount" \
           --spend "$spend" \
           --fee "0.0001"; then
@@ -531,7 +529,6 @@ EOL
         if "$worm_miner_bin" burn \
           --network sepolia \
           --private-key "$private_key" \
-          --custom-rpc "$fastest_rpc" \
           --amount "$remaining" \
           --spend "$remaining_spend" \
           --fee "0.0001"; then
@@ -563,7 +560,7 @@ EOL
           sleep 2
         fi
         
-        if "$worm_miner_bin" info --network sepolia --private-key "$private_key" --custom-rpc "$fastest_rpc"; then
+        if "$worm_miner_bin" info --network sepolia --private-key "$private_key"; then
           success=true
         else
           retry_count=$((retry_count + 1))
@@ -623,7 +620,7 @@ EOL
         echo -e "${YELLOW}错误: 纪元值必须是非负整数，领取数量必须大于 0。${NC}"
         continue
       fi
-      "$worm_miner_bin" claim --network sepolia --private-key "$private_key" --custom-rpc "$fastest_rpc" --from-epoch "$from_epoch" --num-epochs "$num_epochs"
+      "$worm_miner_bin" claim --network sepolia --private-key "$private_key" --from-epoch "$from_epoch" --num-epochs "$num_epochs"
       echo -e "${GREEN}[+] WORM 奖励领取过程已完成。${NC}"
       read -p "按 Enter 键继续..."
       ;;
@@ -734,7 +731,6 @@ echo "参数: --amount-per-epoch $amount_per_epoch --num-epochs $num_epochs --cl
 exec "$worm_miner_bin" mine \\
   --network sepolia \\
   --private-key "\$PRIVATE_KEY" \\
-  --custom-rpc "\$FASTEST_RPC" \\
   --amount-per-epoch "$amount_per_epoch" \\
   --num-epochs "$num_epochs" \\
   --claim-interval "$claim_interval"
