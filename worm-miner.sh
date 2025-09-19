@@ -454,9 +454,9 @@ EOL
       fi
       
       # Get single burn parameters
-      echo -e "${YELLOW}设置单次燃烧参数 (由于最大燃烧限制为1 ETH):${NC}"
-      read -p "请输入单次燃烧的 ETH 数量 (例如: 1.0): " amount
-      read -p "请输入单次作为 BETH 花费的数量 (例如: 1.0): " spend
+      echo -e "${YELLOW}设置单次燃烧参数 (由于最大燃烧限制为10 ETH):${NC}"
+      read -p "请输入单次燃烧的 ETH 数量 (例如: 10.0): " amount
+      read -p "请输入单次作为 BETH 花费的数量 (例如: 9.999): " spend
       
       # Validate single burn parameters
       if ! [[ "$amount" =~ ^[0-9]+\.?[0-9]*$ ]] || ! [[ "$spend" =~ ^[0-9]+\.?[0-9]*$ ]]; then
